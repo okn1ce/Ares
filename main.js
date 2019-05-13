@@ -9,6 +9,16 @@ var gameData = {
 
   // Items
   torch: 0,
+
+  //Upgrades
+  lumberjack: 0,
+  lumberjackCost: 50,
+  fiberFarm: 0,
+  fiberFarmCost: 50,
+
+  //Upgrades speed
+  lumberjackSpeed: 0,
+  fiberFarmSpeed: 0,
 }
 
 
@@ -66,3 +76,58 @@ function showVault() {
     		document.getElementById("moneyCount").innerHTML = gameData.money;
     	}
     }
+
+
+ //Upgrades
+
+    //Lumberjack
+    function addLumberjack() {
+    	if (gameData.money >= gameData.lumberjackCost) {
+    		gameData.money = gameData.money - gameData.lumberjackCost;
+    		gameData.lumberjack = gameData.lumberjack + 1;
+    		gameData.lumberjackCost = (gameData.lumberjackCost * 2);
+    		gameData.lumberjackSpeed = gameData.lumberjackSpeed + 0.5;
+    		document.getElementById("moneyCount").innerHTML = gameData.money;
+    		document.getElementById("lumberjackCount").innerHTML = gameData.lumberjack;
+    		document.getElementById("lumberjackSpeed").innerHTML = gameData.lumberjackSpeed;
+    		document.getElementById("lumberjackCost").innerHTML = gameData.lumberjackCost;
+    		
+    	}
+    }
+
+    //Fibre Farm
+    function addfiberFarm() {
+    	if (gameData.money >= gameData.fiberFarmCost) {
+    		gameData.money = gameData.money - gameData.fiberFarmCost;
+    		gameData.fiberFarm = gameData.fiberFarm + 1;
+    		gameData.fiberFarmCost = (gameData.fiberFarmCost * 2);
+    		gameData.fiberFarmSpeed = gameData.fiberFarmSpeed + 0.75
+    		document.getElementById("moneyCount").innerHTML = gameData.money;
+    		document.getElementById("fiberFarmCount").innerHTML = gameData.fiberFarmCost;
+    		document.getElementById("fiberFarmSpeed").innerHTML = gameData.fiberFarmSpeed;
+    		document.getElementById("fiberFarmCost").innerHTML = gameData.fiberFarmCost;
+    		
+    	}
+    }
+
+
+
+
+
+ // Ticks
+ function woodSecond() {
+ 	gameData.wood = gameData.wood + gameData.lumberjackSpeed;
+ 	document.getElementById('woodCount').innerHTML = gameData.wood;
+ }
+
+ function fiberSecond() {
+ 	gameData.fiber = gameData.fiber + gameData.fiberFarmSpeed;
+ 	document.getElementById('fiberCount').innerHTML = gameData.fiber;
+ }
+
+ window.setInterval(function(){
+	
+	woodSecond();
+	fiberSecond()
+	
+}, 1000);

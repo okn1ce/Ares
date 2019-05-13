@@ -81,16 +81,24 @@
             
             <!-- Upgrades -->
             <div id="upgrades">
-            <button id="lumberjack" class="btn blue" type="button"><span>Hire lumberjack 🔨</span></button>
-            <button id="fiberFarm" class="btn blue" type="button"><span>Plant a fiber farm 🚜</span></button>
+            <button onClick="addLumberjack()" id="lumberjack" class="btn blue" type="button"><span><em id="lumberjackCost">50</em>₲ Hire a lumberjack 🔨</span></button>
+            <button onClick="addfiberFarm()"id="fiberFarm" class="btn blue" type="button"><span>Plant a fiber farm 🚜</span></button>
+            <p> You have <b id="lumberjackCount">0</b> lumberjacks.</p>
+            <p> You have <b id="fiberFarmCount">0</b> fiber farms.</p>
+            <p> You are making <b id="lumberjackSpeed">0</b> wood per second.</p>
+            <p> You are making <b id="fiberFarmSpeed">0</b> fibers per second.</p>
             </div>
+
 
             <!-- Vault -->
             <div id="vault">
               <p> Wood : <span id="woodCount">0</span></p>
               <p> Fibers : <span id="fiberCount">0</span></p>
+            </div>
+
 
             </div>
+
 
 
 
