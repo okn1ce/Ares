@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    
+   <!-- Blacksmith Incremental by /u/Get2Hyped. Please, feel free to review my code and tell me if anything's wrong.
+    Happy blacksmithing! -->
+    
+
+
+
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+    <!-- Main style -->
+    <link rel="stylesheet" type="text/css" href="style.css">
+
+    <!-- buttons style -->
+    <link rel="stylesheet" type="text/css" href="buttons.css">
+
+    <!-- items style -->
+    <link rel="stylesheet" type="text/css" href="items.css">
+
+    <!--Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Modak|Nova+Script|Oxygen" rel="stylesheet">  
+
+    <title>Blacksmith Incremental</title>
+  </head>
+
+
+  <body>
+       <div class="Fullcontainer">
+         <!-- Ressources mining -->
+        <div class="container left">
+          <h3> Ressources </h3>
+          <hr noshade>
+          <button onClick="addWood()" class="btn orange" type="button" ><span>Chop wood 🌲</span></button>
+          <button onClick="addFibers()" class="btn orange" type="button"><span>Gather fibers 🌿</span></button>
+          <br />
+          <br>
+  <br><p> Hello! Thank you for giving a try to my game. It's still a prototype and there is a lot to be added (new items, upgrades, ressources, styling etc..). <br> You can click on "Vault" in the right column to check your ressources. <br> I'm open to any suggestion. </p>
+        </div>
+
+
+        <!-- Craftable items, Vault and selling -->
+        <div class="container center">
+          <h1>Blacksmith 101<span class="smaller"> by Get2Hyped</span><br>
+            <small>You have <span id="moneyCount">0</span>₲</small></h1>
+
+
+
+          <!-- Items list -->
+         <div class="torch">
+  <img src="assets/torch_free1.png">
+  <h3>Wooden Torch (15₲)</h3>
+  <p class="descriptionItems">Grandpa told you 3 woods and 5 fibers can make you a basic torch.</p>
+  <button onClick="addTorch()" class="btn green" type="button" ><span>Craft!</span></button><br>
+  <button onClick="sellTorch()" class="btn green" type="button" ><span>Sell <b id="torchCount">0</b></span></button>
+        </div>
+</div>
+            
+
+
+        
+
+
+        
+        
+        <!-- Upgrades for ressource mining -->
+        <div class="container right">
+         
+          <!-- Navigation tab for Upgrades / Vault -->
+          <div class="nav">
+          <ul>
+            <li  class="upgradeTab"><a href="#" onClick="showUpgrades()"><h3 id="upgradeSelector"> Upgrades </h3></a></li>
+            <li class="vaultTab"><a href="#" onClick="showVault()"><h3 id="vaultSelector"> Vault </h3></a></li>
+          </ul>
+        </div>
+
+            <hr>
+            
+            <!-- Upgrades -->
+            <div id="upgrades">
+            <button id="lumberjack" class="btn blue" type="button"><span>Hire lumberjack 🔨</span></button>
+            <button id="fiberFarm" class="btn blue" type="button"><span>Plant a fiber farm 🚜</span></button>
+            </div>
+
+            <!-- Vault -->
+            <div id="vault">
+              <p> Wood : <span id="woodCount">0</span></p>
+              <p> Fibers : <span id="fiberCount">0</span></p>
+
+            </div>
+
+
+
+        </div>
+       </div>
+   
+
+
+
+
+
+
+
+
+
+
+   </body>
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- Main game javascript -->
+ <script src="main.js" charset="utf-8" type="text/javascript"></script>
+
+<!-- Script for hidden upgrades -->
+<script src="unlockables.js" charset="utf-8" type="text/javascript"></script>
+  </body>
+</html>

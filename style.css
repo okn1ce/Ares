@@ -1,0 +1,139 @@
+@import url('https://fonts.googleapis.com/css?family=Gugi|Josefin+Sans|Macondo+Swash+Caps');
+
+
+
+* {
+	box-sizing: border-box;
+	user-select: none;
+}
+
+html, body {
+          height: 100%;
+          margin: 0;
+        }
+
+html, body, {
+	background-color: #37474F;
+}
+
+small {
+	font-size: 13px;
+	font-family: 'Gugi', cursive;
+}
+
+
+.smaller {
+	font-size: 10px;
+	font-family:'Arial';
+}
+
+h1 {
+	color: black;
+	font-size: 26px;
+	font-family: 'Macondo Swash Caps', cursive;
+}
+
+h3 {
+	text-align: center;
+	color: white;
+    font-family: 'Macondo Swash Caps', cursive;
+    padding-top: 6px;
+
+}
+
+hr {
+	height: 30px; 
+  border-style: solid; 
+  border-color: #8c8b8b; 
+  border-width: 1px 0 0 0; 
+  border-radius: 20px; 
+}
+
+hr:before {
+	display: block; 
+  content: ""; 
+  height: 30px; 
+  margin-top: -31px; 
+  border-style: solid; 
+  border-color: #8c8b8b; 
+  border-width: 0 0 1px 0; 
+  border-radius: 20px; 
+}
+.Fullcontainer {
+	position: fixed;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	right: 0;
+	overflow: auto;
+	border-style: solid;
+	border-color: #202225;
+	border-width: 2px;
+}
+
+.container {
+	float: left;
+	padding: 10px;
+	min-height: 100%;
+	text-align: center;
+
+}
+
+.left {
+	width: 30%;
+	background-color: black;
+	border-right: solid 1px white;
+
+}
+
+.center {
+	width: 40%;
+	background-color: white;
+}
+
+.right {
+	width: 30%;
+	background-color: black;
+	border-left: solid 1px white;
+}
+
+.nav ul {
+  list-style: none;
+  text-align: center;
+  padding: 0;
+  margin: 0;
+}
+.nav li {
+  line-height: 40px;
+  height: 40px;
+  border-bottom: 1px solid #888;
+}
+
+.nav a {
+  text-decoration: none;
+  display: block;
+}
+ 
+ 
+.nav a.active {
+  color: #444;
+  cursor: default;
+}
+
+@media screen and (min-width: 600px) {
+  .nav li {
+    width: 120px;
+    border-bottom: none;
+    height: 50px;
+    line-height: 50px;
+  }
+
+ .nav li {
+    display: inline-block;
+    margin-right: -4px;
+  }
+
+  p {
+  	color: white;
+  	font-family: 'Gugi', cursive;
+  }
