@@ -28,7 +28,7 @@
         if (gameData.wood >= 25) {
             gameData.staff = gameData.staff + 1;
             gameData.wood = gameData.wood - 25;
-            document.getElementById("staffCount").innerHTML = gameData.torch;
+            document.getElementById("staffCount").innerHTML = gameData.staff;
             document.getElementById('woodCount').innerHTML = gameData.wood;
         }
 
