@@ -17,6 +17,7 @@
   color: #ecf0f1;
   
   transition: background-color .3s;
+  cursor: pointer;
 }
 
 .btn:hover, .btn:focus {
@@ -29,19 +30,15 @@
 
 .btn span {
   display: block;
-  padding: 12px 24px;
+  padding: 2px 10px;
 }
 
 .btn:before {
   content: "";
   
-  position: absolute;
-  top: 50%;
-  left: 50%;
   
   display: block;
   width: 0;
-  padding-top: 0;
     
   border-radius: 100%;
   
@@ -55,9 +52,6 @@
 }
 
 .btn:active:before {
-  width: 120%;
-  padding-top: 120%;
-  
   transition: width .2s ease-out, padding-top .2s ease-out;
 }
 
@@ -70,6 +64,7 @@
 .btn.orange:hover {
   background-color: #d35400;
   display: inline;
+
 }
 
 .btn.blue {
@@ -90,4 +85,9 @@
 .btn.red:hover, .btn.red:focus {
   background-color: #c0392b;
   display: inline;
+}
+
+.btn green {
+   width: 10px;
+   height: 10px;
 }

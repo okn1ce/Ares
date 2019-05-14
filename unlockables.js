@@ -1,7 +1,7 @@
 //Inital navigation bar setup
-document.getElementById("upgrades").style.display = "inline";
-document.getElementById("vault").style.display = "none";
-document.getElementById("upgradeSelector").innerHTML = "> Upgrades <";
+document.getElementById("upgrades").style.display = "none";
+document.getElementById("vault").style.display = "inli,e";
+document.getElementById("vaultSelector").innerHTML = "> Vault <";
 
 //Hidden upgrades
 	//document.getElementById("lumberjack").style.display = "none";
