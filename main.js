@@ -103,7 +103,7 @@ function showVault() {
     		gameData.fiberFarmCost = (gameData.fiberFarmCost * 2);
     		gameData.fiberFarmSpeed = gameData.fiberFarmSpeed + 0.75
     		document.getElementById("moneyCount").innerHTML = gameData.money;
-    		document.getElementById("fiberFarmCount").innerHTML = gameData.fiberFarmCost;
+    		document.getElementById("fiberFarmCount").innerHTML = gameData.fiberFarmCount;
     		document.getElementById("fiberFarmSpeed").innerHTML = gameData.fiberFarmSpeed;
     		document.getElementById("fiberFarmCost").innerHTML = gameData.fiberFarmCost;
     		
