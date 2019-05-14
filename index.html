@@ -38,24 +38,31 @@
           <button onClick="addFibers()" class="btn orange" type="button"><span>Gather fibers 🌿</span></button>
           <br />
           <br>
-  <br><p> Hello! Thank you for giving a try to my game. It's still a prototype and there is a lot to be added (new items, upgrades, ressources, styling etc..). <br> You can click on "Vault" in the right column to check your ressources. <br> I'm open to any suggestion. </p>
+  <br><p class="devMess"> Hello! Thank you for giving a try to my game. It's still a prototype and there is a lot to be added (new items, upgrades, ressources, styling etc..). <br> You can click on "Vault" in the right column to check your ressources. <br> I'm open to any suggestion. <br></p>
         </div>
 
 
         <!-- Craftable items, Vault and selling -->
         <div class="container center">
-          <h1>Blacksmith 101<span class="smaller"> by Get2Hyped</span><br>
-            <small>You have <span id="moneyCount">0</span>₲</small></h1>
+          <h1 class="gameTitle">Blacksmith 101<span class="smaller"> by Get2Hyped</span><<br>
+            <span id="moneyCount">0</span>₲ | Wooden Age</h1>
 
 
 
           <!-- Items list -->
          <div class="torch">
-  <img src="assets/torch_free1.png">
+  <img src="assets/torch_free3.png">
   <h3>Wooden Torch (15₲)</h3>
   <p class="descriptionItems">Grandpa told you 3 woods and 5 fibers can make you a basic torch.</p>
   <button onClick="addTorch()" class="btn green" type="button" ><span>Craft!</span></button><br>
-  <button onClick="sellTorch()" class="btn green" type="button" ><span>Sell <b id="torchCount">0</b></span></button>
+  <button onClick="sellTorch()" class="btn green" type="button" ><span>Sell All <b id="torchCount">(0)</b></span></button>
+        </div>
+        <div class="staff">
+  <img src="assets/staff_free2.png">
+  <h3>Wooden staff (30₲)</h3>
+  <p class="descriptionItems">A low tier weapon that require only 25 woods</p>
+  <button onClick="addStaff()" class="btn green" type="button" ><span>Craft!</span></button><br>
+  <button onClick="sellStaff()" class="btn green" type="button" ><span>Sell All <b id="staffCount">(0)</b></span></button>
         </div>
 </div>
             
@@ -141,5 +148,12 @@
 
 <!-- Script for hidden upgrades -->
 <script src="unlockables.js" charset="utf-8" type="text/javascript"></script>
+
+<!-- Script for levels -->
+<script src="level.js" charset="utf-8" type="text/javascript"></script>
+
+<!-- Script for items -->
+<script src="items.js" charset="utf-8" type="text/javascript"></script>
+
   </body>
 </html>

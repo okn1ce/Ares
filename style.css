@@ -7,6 +7,10 @@
 	user-select: none;
 }
 
+.gameTitle {
+  font-size: 30px;
+}
+
 html, body {
           height: 100%;
           margin: 0;
@@ -28,7 +32,7 @@ small {
 }
 
 h1 {
-	color: black;
+	color: white;
 	font-size: 26px;
 	font-family: 'Macondo Swash Caps', cursive;
 }
@@ -81,19 +85,19 @@ hr:before {
 
 .left {
 	width: 30%;
-	background-color: black;
+	background-color: #718093;
 	border-right: solid 1px white;
 
 }
 
 .center {
 	width: 40%;
-	background-color: white;
+	background-color: black;
 }
 
 .right {
 	width: 30%;
-	background-color: black;
+	background-color: #718093;
 	border-left: solid 1px white;
 }
 

@@ -1,4 +1,8 @@
 var gameData = {
+ 
+  //XP
+  xp: 0,
+  level: 0,
 
   // Currency
   money: 0,
@@ -9,6 +13,7 @@ var gameData = {
 
   // Items
   torch: 0,
+  staff:  0,
 
   //Upgrades
   lumberjack: 0,
@@ -19,7 +24,28 @@ var gameData = {
   //Upgrades speed
   lumberjackSpeed: 0,
   fiberFarmSpeed: 0,
+
+
 }
+
+//Dealing with rogue decimals
+function prettify(input){
+    var output = Math.round(input * 1000000)/1000000;
+  return output;
+}
+//Level system
+
+function updatecounters(){
+    if (gameData.xp > 10) {
+      gameData.level = gameData.level + 1;
+      gameData.xp = 0;
+      document.getElementById("levelCount").innerHTML = gameData.level;
+    }
+}
+
+
+
+
 
 
 
@@ -43,39 +69,19 @@ function showVault() {
    //Wood
    function addWood() {
    	gameData.wood = gameData.wood + 0.25;
-   	document.getElementById('woodCount').innerHTML = gameData.wood;
+    gameData.xp = gameData.xp + 0.2;
+    document.getElementById('woodCount').innerHTML = gameData.wood;
     }
 
     //Fibers
     function addFibers() {
    	gameData.fiber = gameData.fiber + 0.5;
+    gameData.xp = gameData.xp + 0.2;
    	document.getElementById('fiberCount').innerHTML = gameData.fiber;
     }
 
  
- //Crafting items
-
-    //Torch
-    function addTorch() {
-    	if (gameData.wood >= 3 && gameData.fiber >= 5) {
-    		gameData.torch = gameData.torch + 1;
-    		gameData.wood = gameData.wood - 3;
-    		gameData.fiber = gameData.fiber - 5;
-    	    document.getElementById("torchCount").innerHTML = gameData.torch;
-    	    document.getElementById('woodCount').innerHTML = gameData.wood;
-    	    document.getElementById('fiberCount').innerHTML = gameData.fiber;
-    	}
-
-    }
-
-    function sellTorch() {
-    	if (gameData.torch >= 1) {
-    		gameData.torch = gameData.torch - 1;
-    		gameData.money = gameData.money + 15;
-    		document.getElementById("torchCount").innerHTML = gameData.torch;
-    		document.getElementById("moneyCount").innerHTML = gameData.money;
-    	}
-    }
+ 
 
 
  //Upgrades
@@ -128,6 +134,7 @@ function showVault() {
  window.setInterval(function(){
 	
 	woodSecond();
-	fiberSecond()
+	fiberSecond();
+
 	
 }, 1000);
