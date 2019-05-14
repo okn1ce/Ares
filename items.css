@@ -18,7 +18,7 @@
 }
 
 .itemTitle {
-    color: black;
+    color: white;
     margin: 0 4px auto;
 
 }
@@ -30,7 +30,7 @@
   margin-top: 10px;
   margin-bottom: 10px;
   padding-bottom: 120px;
-  background: #0984e3;
+  background: #2C3A47;
   box-shadow: 0px 20px 60px rgba(0, 0, 0, 0.5);
   border: solid 2px white;
 }
@@ -49,7 +49,7 @@
   margin-bottom: 10px;
   padding-bottom: 20px;
   margin-left: 10px;
-  background: #0984e3;
+  background: #2C3A47;
   box-shadow: 0px 20px 60px rgba(0, 0, 0, 0.5);
   border: solid 2px white;
 }
