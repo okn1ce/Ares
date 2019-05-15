@@ -1,143 +1,106 @@
-@import url('https://fonts.googleapis.com/css?family=Gugi|Josefin+Sans|Macondo+Swash+Caps');
+@import url('https://fonts.googleapis.com/css?family=Ropa+Sans');
 
-
-
-* {
-	box-sizing: border-box;
-	user-select: none;
+body {
+    background-color: black;
+    color: white;
+    font-family: 'Ropa Sans', sans-serif;
 }
 
-.gameTitle {
-  font-size: 30px;
+strong{
+    font-family: 'Ropa Sans', sans-serif;
 }
 
-html, body {
-          height: 100%;
-          margin: 0;
-        }
-
-html, body {
-	background-color: #37474F;
+html, bodu {
+    width: 100%;
 }
 
-small {
-	font-size: 13px;
-	font-family: 'Gugi', cursive;
-}
-
-
-.smaller {
-	font-size: 10px;
-	font-family:'Arial';
-}
-
-h1 {
-	color: white;
-	font-size: 26px;
-	font-family: 'Macondo Swash Caps', cursive;
-}
-
-h3 {
-	text-align: center;
-	color: white;
-    font-family: 'Macondo Swash Caps', cursive;
-    padding-top: 6px;
+.column {
+    position: relative;
+    height: auto;
+    width: 33.33%;
+    display: block;
+    float: left;
 
 }
 
-hr {
-	height: 30px; 
-  border-style: solid; 
-  border-color: #8c8b8b; 
-  border-width: 1px 0 0 0; 
-  border-radius: 20px; 
+.nav-link{
+    display:block;
+    margin-top:0px;
+    margin-right:0px;
+    margin-bottom:0px;
+    margin-left:6px;
+    float:right;   
+  }
+
+.nav-tabs{
+    background-color: rgb(34,40,49);
 }
 
-hr:before {
-	display: block; 
-  content: ""; 
-  height: 30px; 
-  margin-top: -31px; 
-  border-style: solid; 
-  border-color: #8c8b8b; 
-  border-width: 0 0 1px 0; 
-  border-radius: 20px; 
-}
-.Fullcontainer {
-	position: fixed;
-	top: 0;
-	left: 0;
-	bottom: 0;
-	right: 0;
-	overflow: auto;
-	border-style: solid;
-	border-color: #202225;
-	border-width: 2px;
+
+.nav-tabs > li > a{
+        border-radius: 5px;
 }
 
-.container {
-	float: left;
-	padding: 10px;
-	min-height: 100%;
-	text-align: center;
 
+.tab-content {
+    margin-top: 15px;
+}
+
+footer {
+    color: white;
+}
+
+.card {
+    background-color: rgb(34,40,49) !important;
+    border: 4px solid rgba(0, 34, 51, 0.1);
+    box-shadow: 2px 4px 10px 0 rgba(0, 34, 51, 0.05), 2px 4px 10px 0 rgba(0, 34, 51, 0.05);
+    border-radius: 0.15rem;
+    color: white;
+}
+
+/* Tabs Card */
+
+.tab-card {
+  border:1px solid #eee;
+}
+
+.tab-card-header {
+  background:none;
+}
+/* Default mode */
+.tab-card-header > .nav-tabs {
+  border: none;
+  margin: 0px;
+}
+.tab-card-header > .nav-tabs > li {
+  margin-right: 2px;
+}
+.tab-card-header > .nav-tabs > li > a {
+  border: 0;
+  border-bottom:2px solid transparent;
+  margin-right: 0;
+  color: #737373;
+  padding: 2px 15px;
+}
+
+.tab-card-header > .nav-tabs > li > a.show {
+    border-bottom:2px solid #007bff;
+    color: #007bff;
+}
+.tab-card-header > .nav-tabs > li > a:hover {
+    color: #007bff;
+}
+
+.tab-card-header > .tab-content {
+  padding-bottom: 0;
 }
 
 .left {
-	width: 30%;
-	background-color: #2C3A47;
-	border-right: solid 1px white;
-
+    background: url("https://pngimage.net/wp-content/uploads/2018/05/blacksmith-png-5.png") no-repeat bottom;
+    height: 650px;
 }
 
-.center {
-	width: 40%;
-	background-color: black;
+#devMess {
+  font-size:12px;
+  margin-right: 28%;
 }
-
-.right {
-	width: 30%;
-	background-color: #2C3A47;
-	border-left: solid 1px white;
-}
-
-.nav ul {
-  list-style: none;
-  text-align: center;
-  padding: 0;
-  margin: 0;
-}
-.nav li {
-  line-height: 40px;
-  height: 40px;
-  border-bottom: 1px solid #888;
-}
-
-.nav a {
-  text-decoration: none;
-  display: block;
-}
- 
- 
-.nav a.active {
-  color: #444;
-  cursor: default;
-}
-
-@media screen and (min-width: 600px) {
-  .nav li {
-    width: 120px;
-    border-bottom: none;
-    height: 50px;
-    line-height: 50px;
-  }
-
- .nav li {
-    display: inline-block;
-    margin-right: -4px;
-  }
-
-  p {
-  	color: white;
-  	font-family: 'Gugi', cursive;
-  }

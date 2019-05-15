@@ -1,155 +1,140 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html>
   <head>
-    
-   <!-- Blacksmith Incremental by /u/Get2Hyped. Please, feel free to review my code and tell me if anything's wrong.
+
+        <!-- Ares Incremental by /u/Get2Hyped. Please, feel free to review my code and tell me if anything's wrong.
     Happy blacksmithing! -->
-    
 
 
-
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    
-    <!-- Main style -->
-    <link rel="stylesheet" type="text/css" href="style.css">
-
-    <!-- buttons style -->
-    <link rel="stylesheet" type="text/css" href="buttons.css">
-
-    <!-- items style -->
-    <link rel="stylesheet" type="text/css" href="items.css">
-
-    <!--Google Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Modak|Nova+Script|Oxygen" rel="stylesheet">  
-
-    <title>Blacksmith Incremental</title>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Ares</title>
+        <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <script src="https://unpkg.com/popper.js@1.14.6/dist/umd/popper.min.js"></script>
+        
   </head>
+<body style="background-color: rgb(34,40,49)">
+        <div class="container-fluid">
+                
+               <!--Ressources tab-->
+               <div class="column left">
+                    <p class="tabTitle text-white text-center lead"><strong>Resources</strong></p>
+                      <div class="">
+                                <ul class="list-unstyled">
+                                    <li class="text-white"><img src="sprites\coin_04d.png" /> Gold coins: <span id="money">0.00</span> <footer class="blockquote-footer">Per second : </cite><span id="moneySpeed">0</span></footer></li>
+                                                <li class="text-white">Wood: <span id="wood">0.00</span> <footer class="blockquote-footer">Per second : </cite><span id="woodSpeed">0</span></footer></li>
+                                                <li class="text-white">Fibers: <span id="fibers">0.00</span> <footer class="blockquote-footer">Per second : </cite><span id="fibersSpeed">0</span></footer></li>
+                                </ul>
+                      </div>
+                </div>
+                
+                <!--Middle tab with navbar (Collect, upgrades)-->
+                <div class="column middle">
+                        <!--Navbar-->
+                         <ul class="nav nav-tabs">
+                            <li class="nav-item">
+                                <a href="#collect" class="nav-link active" role="tab" data-toggle="tab">Collect</a>
+                            </li>
+                            <li class="nav-item">
+                                    <a href="#hire" class="nav-link" role="tab" data-toggle="tab">Hire (<span id="hiresNb">2</span>)</a>
+                            </li>
+                            <li class="nav-item">
+                                    <a href="#upgrades" class="nav-link" role="tab" data-toggle="tab">Upgrades (<span id="upgradesNb">1</span>)</span></a>
+                            </li>
+                            <li class="nav-item">
+                                        <a href="#quests" class="nav-link" role="tab" data-toggle="tab">Quests</a>
+                                </li>
+                        </ul>
+                      
+                        <!--Navbar content-->
+                        <div class="tab-content">
+                                <div role="tabpanel" class="tab-pane active" id="collect">
+                                    <button onClick="add(wood), toastr.info('test');" type="button" class="btn btn-outline-warning wood">Chop wood 🌲</button>
+                                    <button onClick="add(fiber)" type="button" class="btn btn-outline-warning">Gather fibers 🌿</button>
+                                    <p id="devMess" class="text-white fixed-center text-center"> 
+                                        <br>Thank you for giving a try to my game, <em class="text-danger">Ares.</em><br>
+                                        Please, note that it's still a prototype. 
+                                        There is currently 2 craftable items, 2 total hires, and 1 upgrade.
+                                        More content will be added soon. Next update will be adding 2 more items, 4 more upgrades, 6 hires and the "Stone Age".</p>
+                                    </p>
+                                </div>
+                                <div role="tabpanel" class="tab-pane" id="hire">
+                                    <button onClick="hire(lumberjack)" type="button" class="btn btn-outline-primary learn" id="lumberjackCount">Hire lumberjack<br>(50)</button>
+                                    <button onClick="hire(fiberCollector)" type="button" class="btn btn-outline-primary learn" id="fiberCollectorCount">Hire fiber collector<br>(50)</button>
+                                </div>
+                                <div role="tabpanel" class="tab-pane" id="upgrades">
+                                    <button onClick="learn(woodenStaff)" type="button" class="btn btn-outline-primary learn" id="woodenStaffCount">Learn staff's craft 📖<br>(40)</button>
+                                </div>
+                                <div role="tabpanel" class="tab-pane text-white" id="quests">Coming soon!</div>
+                        </div>
+                </div>
+                
+                
+                
+                
+                <!--Right bar for crafting with a card system-->
+                <div class="column right">
+                    <p class="tabTitle text-white text-center lead"><strong>Craft | Wooden Age</strong></p> 
+                    
+                    <div class="row">
+                    <div class="col-6">
+                      <div class="card mt-3 tab-card">
+                        <div class="card-header tab-card-header">
+                          <ul class="nav nav-tabs card-header-tabs" id="myTab" role="tablist">
+                            <li class="nav-item">
+                                <a class="nav-link active" id="one-tab" data-toggle="tab" href="#one" role="tab" aria-controls="One" aria-selected="true">Key</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="two-tab" data-toggle="tab" href="#two" role="tab" aria-controls="Two" aria-selected="false" >Staff</a>
+                            </li>
+                          </ul>
+                        </div>
+                
+                        <div class="tab-content" id="myTabContent">
+                          <div class="tab-pane fade show active p-3" id="one" role="tabpanel" aria-labelledby="one-tab">
+                              <p>Tier 1 | 3 gold coins</p>
+                            <h5 class="card-title">Wooden key <img src="sprites\key_02a.png"/></h5>
+                            <p>You have : <span id="woodenKey">0</span></p>
+                            <p class="card-text"><em>They sell very well and it's only 5 pieces of wood to craft!</em></p>
+                            <a href="#" onClick="craftOne(wood, woodenKey, 5)" class="btn btn-primary">Craft</a> 
+                            <a href="#" onClick="sellAll(woodenKey)" class="btn btn-primary">Sell All</a>             
+                          </div>
+                          <div class="tab-pane fade p-3" id="two" role="tabpanel" aria-labelledby="two-tab">
+                            <p>Tier 1 | 10 gold coins</p>
+                            <h5 class="card-title">Wooden staff <img src="sprites\staff_02ab.png"/></h5>
+                            <p>You have : <span id="woodenStaff">0</span></p>
+                            <p class="card-text"><em>An absolute wood unit. 10 wood logs and 5 fibers seems to do the work.</em></p>
+                            <a href="#" onClick="craftTwo(wood, 10, fiber, 5, woodenStaff)" class="btn btn-primary">Craft</a> 
+                            <a href="#" onClick="sellAll(woodenStaff)" class="btn btn-primary">Sell All</a>              
+                          </div>
+                
+                        </div>
+                      </div>
+                    </div>
+                  </div>
 
-
-  <body>
-       <div class="Fullcontainer">
-         <!-- Ressources mining -->
-        <div class="container left">
-          <p> Wood : <span id="woodCount">0</span>
-              |  Fibers : <span id="fiberCount">0</span></p>
-          <hr noshade>
-          <button onClick="addWood()" class="btn orange" type="button" ><span>Chop wood 🌲</span></button>
-          <button onClick="addFibers()" class="btn orange" type="button"><span>Gather fibers 🌿</span></button>
-          <br />
-          <br>
-  <br><p class="devMess"> Hello! Thank you for giving a try to my game. It's still a prototype and there is a lot to be added (new items, upgrades, ressources, styling etc..). <br> I'm open to any suggestion. <br></p>
-        </div>
-
-
-        <!-- Craftable items, Vault and selling -->
-        <div class="container center">
-          <h1 class="gameTitle">Blacksmith 101<span class="smaller"> by Get2Hyped</span><br>
-            <span id="moneyCount">0</span>₲ | Wooden Age</h1>
-
-
-
-          <!-- Items list -->
-         <div class="torch">
-  <img src="assets/torch_free3.png">
-  <h3 class="itemTitle">Wooden Torch (15₲)</h3>
-  <p class="descriptionItems">Grandpa told you 3 woods and 5 fibers can make you a basic torch.
-  <button onClick="addTorch()" class="btn blue " type="button" ><span>Craft!</span></button><br>
-  <button onClick="sellTorch()" class="btn green" type="button" ><span>Sell All <b id="torchCount">(0)</b></span>
-  </button></p>
-        </div>
-        <div class="staff">
-  <img src="assets/staff_free2.png">
-  <h3 class="itemTitle">Wooden staff (30₲)</h3>
-  <p class="descriptionItems">A low tier weapon that require only 25 woods</p>
-  <button onClick="addStaff()" class="btn blue" type="button" ><span>Craft!</span></button><br>
-  <button onClick="sellStaff()" class="btn green" type="button" ><span>Sell All <b id="staffCount">(0)</b></span></button>
-        </div>
-</div>
-            
-
-
-        
-
-
-        
-        
-        <!-- Upgrades for ressource mining -->
-        <div class="container right">
-         
-          <!-- Navigation tab for Upgrades / Vault -->
-          <div class="nav">
-          <ul>
-            <li  class="upgradeTab"><a href="#" onClick="showUpgrades()"><h3 id="upgradeSelector"> Upgrades </h3></a></li>
-          </ul>
-        </div>
-
-            <hr>
-            
-            <!-- Upgrades -->
-            <div id="upgrades">
-            <button onClick="addLumberjack()" id="lumberjack" class="btn blue" type="button"><span><em id="lumberjackCost">50</em>₲ Hire a lumberjack 🔨</span></button>
-            <button onClick="addfiberFarm()"id="fiberFarm" class="btn blue" type="button"><span><em id="fiberFarmCost">50</em>₲ Plant a fiber farm 🚜</span></button>
-            <p> You have <b id="lumberjackCount">0</b> lumberjacks.</p>
-            <p> You have <b id="fiberFarmCount">0</b> fiber farms.</p>
-            <p> You are making <b id="lumberjackSpeed">0</b> wood per second.</p>
-            <p> You are making <b id="fiberFarmSpeed">0</b> fibers per second.</p>
-            </div>
-
-
-            
-
-            </div>
-
-
-
-
-        </div>
-       </div>
-   
-
-
-
-
-
-
-
-
-
-
-   </body>
-
+              </div>
     
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- Main game javascript -->
- <script src="main.js" charset="utf-8" type="text/javascript"></script>
-
-<!-- Script for hidden upgrades -->
-<script src="unlockables.js" charset="utf-8" type="text/javascript"></script>
-
-<!-- Script for levels -->
-<script src="level.js" charset="utf-8" type="text/javascript"></script>
-
-<!-- Script for items -->
-<script src="items.js" charset="utf-8" type="text/javascript"></script>
-
+              
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+              <!-- jQuery first, then Bootstrap JS. -->
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+     <script src="https://cdn.rawgit.com/twbs/bootstrap/v4-dev/dist/js/bootstrap.js"></script>
+     <script src="js\main.js"></script>
+    
   </body>
+  <footer class="fixed-bottom text-center">ARES | Game made with ❤️ and ☕ by Get2Hyped<a href=""> (v0.1a)</a></footer>
 </html>
