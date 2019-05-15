@@ -83,21 +83,45 @@
 
  
   function updateResourceTotals() {
-	//Update page with resource numbers
-	document.getElementById('wood').innerHTML = roundN(wood.total, 2);
-  document.getElementById('fibers').innerHTML = roundN(fiber.total, 2);
-  document.getElementById('money').innerHTML = roundN(money.total, 2);
-  document.getElementById('upgradesNb').innerHTML = upgrades.total;
-  document.getElementById('hiresNb').innerHTML = hires.total;
+  //Update page with resource numbers
+
+  //wood
+  document.getElementById('wood').innerHTML = roundN(wood.total, 2);
   document.getElementById('woodSpeed').innerHTML = lumberjack.increment; 
+  updateSave(wood);
+
+  //fibers
+  document.getElementById('fibers').innerHTML = roundN(fiber.total, 2);
   document.getElementById('fibersSpeed').innerHTML = fiberCollector.increment; 
+  updateSave(fiber);
+
+  //money
+  document.getElementById('money').innerHTML = roundN(money.total, 2);
+  updateSave(money);
+  
+  //upgrades
+  document.getElementById('upgradesNb').innerHTML = upgrades.total;
+  updateSave(upgrades)
+
+  //hires
+  document.getElementById('hiresNb').innerHTML = hires.total;
+  updateSave(hires)
+
+
    }
 
 function updateItemTotals() {
 	//Update page with items numbers
-	document.getElementById('woodenKey').innerHTML = woodenKey.total;
+  document.getElementById('woodenKey').innerHTML = woodenKey.total;
+  updateSave(woodenKey)
+
   document.getElementById('woodenStaff').innerHTML = woodenStaff.total;
+  updateSave(woodenStaff)
+
   document.getElementById('money').innerHTML = roundN(money.total, 2);
+  updateSave(money)
+
+
    }
 
 
@@ -160,7 +184,8 @@ function updateItemTotals() {
         money.total -= job.hirePrice;
         document.getElementById(job.id).style.display = 'none';
         updateResourceTotals();
-    
+        updateSave(job)
+
        }
     }
 
@@ -174,6 +199,14 @@ function updateItemTotals() {
       updateResourceTotals();
     }
     
+    //Saving to local storage
+
+    function updateSave(fieldObj){
+      //this is being done since the game objects aren't saved in one larger object called game data currently
+      var varToString = varObj => Object.keys(varObj)[0]
+      window.localStorage.setItem(varToString(fieldObj),fieldObj)
+    }
+
     setInterval(function(){ 
       
       autoIncrement(wood, lumberjack);
