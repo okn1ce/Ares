@@ -12,28 +12,31 @@
   
   
 //Ressources
-  var wood = {
+  var lstore = window.localStorage;
+  console.log(lstore.getItem("wood"))
+
+  var wood =  lstore.getItem("wood") ? JSON.parse(lstore.getItem("wood")) : {
       total: 0,
       increment: 0.25,
   },
-  fiber = {
+  fiber = lstore.getItem("fiber") ? JSON.parse(lstore.getItem("fiber")) :{
       total: 0,
       increment: 0.50,
   },
 
 
 //Currency
-    money = {
+    money = lstore.getItem("money") ? JSON.parse(lstore.getItem("money")) :{
       total: 0,
     },
   
 //Items
-    woodenKey = {
+    woodenKey = lstore.getItem("woodenKey") ? JSON.parse(lstore.getItem("woodenKey")): {
       id: 'woodenKeyCount',
       total: 0,
        price: 3,
    },
-   woodenStaff = {
+   woodenStaff = lstore.getItem("woodenStaff") ? JSON.parse(lstore.getItem("woodenStaff")):{
        id: 'woodenStaffCount',
        total: 0,
        price: 10,
@@ -43,23 +46,23 @@
    },
 
 //Upgrades available
-   upgrades = {
+   upgrades = lstore.getItem("upgrades") ? JSON.parse(lstore.getItem("upgrades")):{
        total: 1,
    },
 
 //Hires available
-   hires = {
+   hires = lstore.getItem("hires") ? JSON.parse(lstore.getItem("hires")):{
        total: 2,
    },
 //Jobs
-    lumberjack = {
+    lumberjack = lstore.getItem("lumberjack") ? JSON.parse(lstore.getItem("lumberjack")):{
         id: "lumberjackCount",
         total: 0,
         hirePrice: 50,
         hired: false,
         increment: 0,
     },
-    fiberCollector = {
+    fiberCollector =  lstore.getItem("fiberCollector") ? JSON.parse(lstore.getItem("fiberCollector")):{
       id: "fiberCollectorCount",
       total: 0,
       hirePrice: 50,
@@ -88,24 +91,24 @@
   //wood
   document.getElementById('wood').innerHTML = roundN(wood.total, 2);
   document.getElementById('woodSpeed').innerHTML = lumberjack.increment; 
-  updateSave(wood);
+  updateSave(wood,"wood");
 
   //fibers
   document.getElementById('fibers').innerHTML = roundN(fiber.total, 2);
   document.getElementById('fibersSpeed').innerHTML = fiberCollector.increment; 
-  updateSave(fiber);
+  updateSave(fiber,"fiber");
 
   //money
   document.getElementById('money').innerHTML = roundN(money.total, 2);
-  updateSave(money);
+  updateSave(money,"money");
   
   //upgrades
   document.getElementById('upgradesNb').innerHTML = upgrades.total;
-  updateSave(upgrades)
+  updateSave(upgrades,"upgrades")
 
   //hires
   document.getElementById('hiresNb').innerHTML = hires.total;
-  updateSave(hires)
+  updateSave(hires,"hires")
 
 
    }
@@ -113,13 +116,13 @@
 function updateItemTotals() {
 	//Update page with items numbers
   document.getElementById('woodenKey').innerHTML = woodenKey.total;
-  updateSave(woodenKey)
+  updateSave(woodenKey,"woodenKey")
 
   document.getElementById('woodenStaff').innerHTML = woodenStaff.total;
-  updateSave(woodenStaff)
+  updateSave(woodenStaff, "woodenStaff")
 
   document.getElementById('money').innerHTML = roundN(money.total, 2);
-  updateSave(money)
+  updateSave(money, "money")
 
 
    }
@@ -171,6 +174,9 @@ function updateItemTotals() {
         upgrades.total -= 1;
         money.total -= item.learnPrice;
         document.getElementById(item.id).style.display = 'none';
+        if("woodenStaffCount" === item.id){
+          updateSave(item,"woodenStaff")
+        }
         updateResourceTotals();
        }
       }
@@ -184,8 +190,12 @@ function updateItemTotals() {
         money.total -= job.hirePrice;
         document.getElementById(job.id).style.display = 'none';
         updateResourceTotals();
-        updateSave(job)
-
+        if(job.id==="lumberjackCount"){
+          updateSave(job,"lumberjack")
+        }
+        else{
+          updateSave(job,"fiberCollectorCount")
+        }
        }
     }
 
@@ -201,10 +211,8 @@ function updateItemTotals() {
     
     //Saving to local storage
 
-    function updateSave(fieldObj){
-      //this is being done since the game objects aren't saved in one larger object called game data currently
-      var varToString = varObj => Object.keys(varObj)[0]
-      window.localStorage.setItem(varToString(fieldObj),fieldObj)
+    function updateSave(fieldObj,objNameStr){
+      window.localStorage.setItem(objNameStr,JSON.stringify(fieldObj))
     }
 
     setInterval(function(){ 
