@@ -62,7 +62,7 @@
         hired: false,
         increment: 0,
     },
-    fiberCollector =  lstore.getItem("fiberCollector") ? JSON.parse(lstore.getItem("fiberCollector")):{
+    fiberCollector =  lstore.getItem("fiberCollectorCount") ? JSON.parse(lstore.getItem("fiberCollectorCount")):{
       id: "fiberCollectorCount",
       total: 0,
       hirePrice: 50,
@@ -73,11 +73,13 @@
   
  
   //Unlockables
-  document.getElementById('two-tab').style.display = 'none';  
+  document.getElementById('two-tab').style.display = woodenStaff.learned ? 'inline' : 'none';  
   
+  document.getElementById('woodenStaffCount').style.display = woodenStaff.learned ? 'none' : 'visible';  
 
+  document.getElementById('fiberCollectorCount').style.display = fiberCollector.hired ? 'none' : 'inline-block';
+  document.getElementById('lumberjackCount').style.display = fiberCollector.hired ? 'none' : 'inline-block';
 
- 
  
    //Round numbers to N decimals
  function roundN(num,n){
@@ -194,7 +196,7 @@ function updateItemTotals() {
           updateSave(job,"lumberjack")
         }
         else{
-          updateSave(job,"fiberCollectorCount")
+          updateSave(job,"fiberCollector")
         }
        }
     }
