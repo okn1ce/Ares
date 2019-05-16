@@ -13,7 +13,6 @@
   
 //Ressources
   var lstore = window.localStorage;
-  console.log(lstore.getItem("wood"))
 
   var wood =  lstore.getItem("wood") ? JSON.parse(lstore.getItem("wood")) : {
       total: 0,
@@ -62,7 +61,7 @@
         hired: false,
         increment: 0,
     },
-    fiberCollector =  lstore.getItem("fiberCollectorCount") ? JSON.parse(lstore.getItem("fiberCollectorCount")):{
+    fiberCollector =  lstore.getItem("fiberCollector") ? JSON.parse(lstore.getItem("fiberCollector")):{
       id: "fiberCollectorCount",
       total: 0,
       hirePrice: 50,
@@ -216,6 +215,15 @@ function updateItemTotals() {
     function updateSave(fieldObj,objNameStr){
       window.localStorage.setItem(objNameStr,JSON.stringify(fieldObj))
     }
+
+    function clearSave(){
+      window.localStorage.clear();
+      document.location.reload(true);
+    }
+
+    //intial runs for the purpose of saves
+    updateItemTotals();
+    updateResourceTotals();
 
     setInterval(function(){ 
       
