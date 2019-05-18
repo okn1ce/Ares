@@ -10,7 +10,7 @@ strong{
     font-family: 'Ropa Sans', sans-serif;
 }
 
-html, bodu {
+html, body {
     width: 100%;
 }
 
@@ -56,6 +56,7 @@ footer {
     box-shadow: 2px 4px 10px 0 rgba(0, 34, 51, 0.05), 2px 4px 10px 0 rgba(0, 34, 51, 0.05);
     border-radius: 0.15rem;
     color: white;
+
 }
 
 /* Tabs Card */
@@ -103,4 +104,48 @@ footer {
 #devMess {
   font-size:12px;
   margin-right: 28%;
+}
+
+progress {
+  display: block; 
+  width: 300px;
+  border: 0 none;
+  background: rgb(34,40,49);
+  border-radius: 25px;
+  box-shadow: inset 0px 1px 1px rgba(0,0,0,0.5), 0px 1px 0px rgba(255,255,255,0.2);
+}
+progress::-moz-progress-bar {
+  border-radius: 12px;
+  background: #FFF;
+  box-shadow: inset 0 -2px 4px rgba(0,0,0,0.4), 0 2px 5px 0px rgba(0,0,0,0.3);
+  
+}
+/* webkit */
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+  progress {
+    height: 8px;
+  }
+}
+progress::-webkit-progress-bar {
+    background: transparent;
+}  
+progress::-webkit-progress-value {  
+  border-radius: 12px;
+  background: #FFF;
+  box-shadow: inset 0 -2px 4px rgba(0,0,0,0.4), 0 2px 5px 0px rgba(0,0,0,0.3); 
+} 
+
+.ressourceHR {
+  width: 50px;
+  margin: 10px 0;
+  
+}
+
+
+.Craft {
+  width: 150px;
+}
+
+button {
+  margin-bottom: 5px !important;
 }

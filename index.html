@@ -1,150 +1,187 @@
 <!DOCTYPE html>
 <html>
-  <head>
 
-        <!-- Ares Incremental by /u/Get2Hyped. Please, feel free to review my code and tell me if anything's wrong.
+<head>
+
+  <!-- Ares Incremental by /u/Get2Hyped. Please, feel free to review my code and tell me if anything's wrong.
     Happy blacksmithing! -->
 
 
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Ares</title>
-        <!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-139996061-2"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ares</title>
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-139996061-2"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
 
-  gtag('config', 'UA-139996061-2');
-</script>
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+    gtag('js', new Date());
 
-        <link rel="stylesheet" href="style.css">
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-        <script src="https://unpkg.com/popper.js@1.14.6/dist/umd/popper.min.js"></script>
-        
-  </head>
+    gtag('config', 'UA-139996061-2');
+  </script>
+
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <script src="https://unpkg.com/popper.js@1.14.6/dist/umd/popper.min.js"></script>
+
+</head>
+
 <body style="background-color: rgb(34,40,49)">
-        <div class="container-fluid">
-                
-               <!--Ressources tab-->
-               <div class="column left">
-                    <p class="tabTitle text-white text-center lead"><strong>Resources</strong></p>
-                      <div class="">
-                                <ul class="list-unstyled">
-                                    <li class="text-white"><img src="sprites\coin_04d.png" /> Gold coins: <span id="money">0.00</span> <footer class="blockquote-footer">Per second : </cite><span id="moneySpeed">0</span></footer></li>
-                                                <li class="text-white">Wood: <span id="wood">0.00</span> <footer class="blockquote-footer">Per second : </cite><span id="woodSpeed">0</span></footer></li>
-                                                <li class="text-white">Fibers: <span id="fibers">0.00</span> <footer class="blockquote-footer">Per second : </cite><span id="fibersSpeed">0</span></footer></li>
-                                </ul>
-                      </div>
-                </div>
-                
-                <!--Middle tab with navbar (Collect, upgrades)-->
-                <div class="column middle">
-                        <!--Navbar-->
-                         <ul class="nav nav-tabs">
-                            <li class="nav-item">
-                                <a href="#collect" class="nav-link active" role="tab" data-toggle="tab">Collect</a>
-                            </li>
-                            <li class="nav-item">
-                                    <a href="#hire" class="nav-link" role="tab" data-toggle="tab">Hire (<span id="hiresNb">2</span>)</a>
-                            </li>
-                            <li class="nav-item">
-                                    <a href="#upgrades" class="nav-link" role="tab" data-toggle="tab">Upgrades (<span id="upgradesNb">1</span>)</span></a>
-                            </li>
-                            <li class="nav-item">
-                                        <a href="#quests" class="nav-link" role="tab" data-toggle="tab">Quests</a>
-                                </li>
-                        </ul>
-                      
-                        <!--Navbar content-->
-                        <div class="tab-content">
-                                <div role="tabpanel" class="tab-pane active" id="collect">
-                                    <button onClick="add(wood)" type="button" class="btn btn-outline-warning wood">Chop wood 🌲</button>
-                                    <button onClick="add(fiber)" type="button" class="btn btn-outline-warning">Gather fibers 🌿</button>
-                                    <p id="devMess" class="text-white fixed-center text-center"> 
-                                        <br>Thank you for giving a try to my game, <em class="text-danger">Ares.</em><br>
-                                        Please, note that it's still a prototype. 
-                                        There is currently 2 craftable items, 2 total hires, and 1 upgrade.
-                                        More content will be added soon. Next update will be adding 2 more items, 4 more upgrades, 6 hires and the "Stone Age".</p>
-                                    </p>
-                                </div>
-                                <div role="tabpanel" class="tab-pane" id="hire">
-                                    <button onClick="hire(lumberjack)" type="button" class="btn btn-outline-primary learn" id="lumberjackCount">Hire lumberjack<br>(50)</button>
-                                    <button onClick="hire(fiberCollector)" type="button" class="btn btn-outline-primary learn" id="fiberCollectorCount">Hire fiber collector<br>(50)</button>
-                                </div>
-                                <div role="tabpanel" class="tab-pane" id="upgrades">
-                                    <button onClick="learn(woodenStaff)" type="button" class="btn btn-outline-primary learn" id="woodenStaffCount">Learn staff's craft 📖<br>(40)</button>
-                                </div>
-                                <div role="tabpanel" class="tab-pane text-white" id="quests">Coming soon!</div>
-                        </div>
-                </div>
-                
-                
-                
-                
-                <!--Right bar for crafting with a card system-->
-                <div class="column right">
-                    <p class="tabTitle text-white text-center lead"><strong>Craft | Wooden Age</strong></p> 
-                    
-                    <div class="row">
-                    <div class="col-6">
-                      <div class="card mt-3 tab-card">
-                        <div class="card-header tab-card-header">
-                          <ul class="nav nav-tabs card-header-tabs" id="myTab" role="tablist">
-                            <li class="nav-item">
-                                <a class="nav-link active" id="one-tab" data-toggle="tab" href="#one" role="tab" aria-controls="One" aria-selected="true">Key</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" id="two-tab" data-toggle="tab" href="#two" role="tab" aria-controls="Two" aria-selected="false" >Staff</a>
-                            </li>
-                          </ul>
-                        </div>
-                
-                        <div class="tab-content" id="myTabContent">
-                          <div class="tab-pane fade show active p-3" id="one" role="tabpanel" aria-labelledby="one-tab">
-                              <p>Tier 1 | 3 gold coins</p>
-                            <h5 class="card-title">Wooden key <img src="sprites\key_02a.png"/></h5>
-                            <p>You have : <span id="woodenKey">0</span></p>
-                            <p class="card-text"><em>They sell very well and it's only 5 pieces of wood to craft!</em></p>
-                            <a href="#" onClick="craftOne(wood, woodenKey, 5)" class="btn btn-primary">Craft</a> 
-                            <a href="#" onClick="sellAll(woodenKey)" class="btn btn-primary">Sell All</a>             
-                          </div>
-                          <div class="tab-pane fade p-3" id="two" role="tabpanel" aria-labelledby="two-tab">
-                            <p>Tier 1 | 10 gold coins</p>
-                            <h5 class="card-title">Wooden staff <img src="sprites\staff_02ab.png"/></h5>
-                            <p>You have : <span id="woodenStaff">0</span></p>
-                            <p class="card-text"><em>An absolute wood unit. 10 wood logs and 5 fibers seems to do the work.</em></p>
-                            <a href="#" onClick="craftTwo(wood, 10, fiber, 5, woodenStaff)" class="btn btn-primary">Craft</a> 
-                            <a href="#" onClick="sellAll(woodenStaff)" class="btn btn-primary">Sell All</a>              
-                          </div>
-                
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+  <div class="container-fluid">
 
+    <!--Ressources tab-->
+    <div class="column left">
+      <p class="tabTitle text-white text-center lead"><strong>Resources</strong></p>
+      <div class="">
+        <ul class="list-unstyled">
+          <li class="text-white"><img src="sprites\coin_04d.png" /> Gold coins: <span id="money">0</span>
+            <footer class="blockquote-footer">Per second : </cite><span id="moneySpeed">0</span></footer>
+          </li>
+          <hr class="ressourceHR">
+          <li class="text-white">Wood: <span id="wood">0</span> <br> <progress id="progressWood" value="0"
+              max="1"></progress>
+            <footer class="blockquote-footer">Per second : </cite><span id="woodSpeed">0</span></footer>
+          </li>
+          <hr class="ressourceHR">
+          <li class="text-white">Fibers: <span id="fibers">0</span> <br><progress id="progressFiber" value="0"
+              max="1"></progress>
+            <footer class="blockquote-footer">Per second : </cite><span id="fibersSpeed">0</span></footer>
+          </li>
+          <hr class="ressourceHR">
+          <li class="text-white">Research: <span id="research">0</span> <br><progress id="progressResearch" value="0"
+            max="1"></progress>
+          <footer class="blockquote-footer">Per second : </cite><span id="researchSpeed">0</span></footer>
+        </li>
+        </ul>
+      </div>
+    </div>
+
+    <!--Middle tab with navbar (Collect, upgrades)-->
+    <div class="column middle">
+      <!--Navbar-->
+      <ul class="nav nav-tabs">
+        <li class="nav-item">
+          <a href="#collect" class="nav-link active" role="tab" data-toggle="tab">Collect</a>
+        </li>
+        <li class="nav-item">
+          <a href="#upgrades" class="nav-link" role="tab" data-toggle="tab">Upgrades</a>
+        </li>
+        <li class="nav-item">
+          <a href="#researchPanel" class="nav-link" role="tab" data-toggle="tab">Research</a>
+        </li>
+      </ul>
+
+      <!--Navbar content-->
+      <div class="tab-content">
+        <div role="tabpanel" class="tab-pane active text-danger" id="collect">
+          <button onClick="add(wood, 'progressWood')" type="button" class="btn btn-outline-warning wood">Chop wood
+            🌲</button>
+          <button onClick="add(fiber, 'progressFiber')" type="button" class="btn btn-outline-warning">Gather fibers
+            🌿</button>
+              <button onClick="add(research, 'progressResearch')" type="button" class="btn btn-outline-warning">Read ancient books 📚
+                </button>
+          <p id="devMess" class="text-white fixed-center text-center">
+            <br>Thank you for giving a try to my game, <em class="text-danger">Ares.</em><br>
+            Please, note that it's still a prototype.
+            </p>
+          </p>
+        </div>
+        <div role="tabpanel" class="tab-pane" id="upgrades">
+          <button onClick="hire(lumberjack, 0.10)" type="button" class="btn btn-outline-primary learn"
+            id="lumberjackCount"><span id="isLumberUpgraded">Hire</span> lumberjack<br>(<span id="lumberjackPrice">10</span>)</button>
+          <button onClick="hire(fiberCollector, 0.10)" type="button" class="btn btn-outline-primary learn"
+            id="fiberCollectorCount"><span id="isFiberUpgraded">Hire</span> fiber collector<br>(<span id="fiberPrice">15</span>)</button>
+        </div>
+        <div role="tabpanel" class="tab-pane text-white" id="researchPanel">
+          <button onClick="learn(woodenStaff)" type="button" class="btn btn-outline-primary learn" id="woodenStaffCount">Learn wooden staff recipe (50R)</button>
+        </div>
+      </div>
+    </div>
+
+
+
+
+    <!--Right bar for crafting with a card system-->
+    <div class="column right">
+      <p class="tabTitle text-white text-center lead"><strong>Craft | Wooden Age</strong></p>
+
+      <div class="row">
+        <div class="col-6">
+          <div class="card mt-3 tab-card">
+            <div class="card-header tab-card-header">
+              <ul class="nav nav-tabs card-header-tabs" id="myTab" role="tablist">
+                <li class="nav-item">
+                  <a class="nav-link active" id="one-tab" data-toggle="tab" href="#one" role="tab" aria-controls="One"
+                    aria-selected="true">Key</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" id="two-tab" data-toggle="tab" href="#two" role="tab" aria-controls="Two"
+                    aria-selected="false">Staff</a>
+                </li>
+              </ul>
+            </div>
+
+            <div class="tab-content" id="myTabContent">
+              <div class="tab-pane fade show active p-3" id="one" role="tabpanel" aria-labelledby="one-tab">
+                <p>Tier 1 | 5 gold coins</p>
+                <h5 class="card-title">Wooden key <img src="sprites\key_02a.png" /></h5>
+                <p>You have : <span id="woodenKey">0</span></p>
+                <p class="card-text"><em>They sell very well and it's only 1 piece of wood to craft!</em></p>
+                <progress class="Craft" id="craftWoodenKey" value="0" max="1"></progress>
+                <br>
+                <progress class="Craft" id="sellWoodenKey" value="0" max="1"></progress>
+                <br>
+                <a href="#" onClick="craftOne(wood, woodenKey, 1, 'craftWoodenKey')" class="btn btn-primary">Craft</a>
+                <a href="#" onClick="sell(woodenKey, 'sellWoodenKey')" class="btn btn-primary">Sell</a>
               </div>
-    
+              <div class="tab-pane fade p-3" id="two" role="tabpanel" aria-labelledby="two-tab">
+                <p>Tier 1 | 12 gold coins</p>
+                <h5 class="card-title">Wooden staff <img src="sprites\staff_02ab.png" /></h5>
+                <p>You have : <span id="woodenStaff">0</span></p>
+                <p class="card-text"><em>An absolute wood unit. 2 wood logs seems to do the work.</em></p>
+                <progress class="Craft" id="craftWoodenStaff" value="0" max="1"></progress>
+                <br>
+                <progress class="Craft" id="sellWoodenStaff" value="0" max="1"></progress>
+                <br>
+                <a href="#" onClick="craftOne(wood, woodenStaff, 2, 'craftWoodenStaff')" class="btn btn-primary">Craft</a>
+                <a href="#" onClick="sell(woodenStaff, 'sellWoodenStaff')" class="btn btn-primary">Sell</a>
+              </div>
+
               
-     
-     
-     
-     
-     
-     
-     
-     
-     
-     
-     
-     
-              <!-- jQuery first, then Bootstrap JS. -->
-     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-     <script src="https://cdn.rawgit.com/twbs/bootstrap/v4-dev/dist/js/bootstrap.js"></script>
-     <script src="js\main.js"></script>
-    
-  </body>
-  <footer class="fixed-bottom text-center">ARES | Game made with ❤️ and ☕ by Get2Hyped<a href="https://github.com/okn1ce/Ares/commit/940f714b81a3f56c5d1d6f1ae4e6e477ba2d042f"> (v0.1a)</a></footer>
+
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!-- jQuery first, then Bootstrap JS. -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script src="https://cdn.rawgit.com/twbs/bootstrap/v4-dev/dist/js/bootstrap.js"></script>
+    <script src="js\main.js"></script>
+
+</body>
+<footer class="fixed-bottom text-center">ARES | Game made with ❤️ and ☕ by Get2Hyped
+    (v0.1c)</footer>
+
 </html>
+

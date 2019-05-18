@@ -1,233 +1,323 @@
-
 //Some functions are inspired from CivClicker, all credits to this amazing game!
 //Big thanks to LKD07 & Gigoy for their valuable help!
 
-//Notification script
-
-
-
 //Init game data
 
-//Currency
-  
-  
+//Progres bar
+var currentLength;
+
+
 //Ressources
-  var lstore = window.localStorage;
+var lstore = window.localStorage;
 
-  var wood =  lstore.getItem("wood") ? JSON.parse(lstore.getItem("wood")) : {
-      total: 0,
-      increment: 0.25,
+var wood = lstore.getItem("wood") ? JSON.parse(lstore.getItem("wood")) : {
+    total: 0,
+    increment: 0.33,
   },
-  fiber = lstore.getItem("fiber") ? JSON.parse(lstore.getItem("fiber")) :{
-      total: 0,
-      increment: 0.50,
+  fiber = lstore.getItem("fiber") ? JSON.parse(lstore.getItem("fiber")) : {
+    total: 0,
+    increment: 0.50,
+  },
+  research = lstore.getItem("research") ? JSON.parse(lstore.getItem("research")) : {
+    total: 0,
+    increment: 0.33,
+
   },
 
+  //Currency
+  money = lstore.getItem("money") ? JSON.parse(lstore.getItem("money")) : {
+    total: 0,
+  },
 
-//Currency
-    money = lstore.getItem("money") ? JSON.parse(lstore.getItem("money")) :{
-      total: 0,
-    },
+  //Items
+  woodenKey = lstore.getItem("woodenKey") ? JSON.parse(lstore.getItem("woodenKey")) : {
+    id: 'woodenKeyCount',
+    total: 0,
+    price: 5,
+  },
   
-//Items
-    woodenKey = lstore.getItem("woodenKey") ? JSON.parse(lstore.getItem("woodenKey")): {
-      id: 'woodenKeyCount',
-      total: 0,
-       price: 3,
-   },
-   woodenStaff = lstore.getItem("woodenStaff") ? JSON.parse(lstore.getItem("woodenStaff")):{
-       id: 'woodenStaffCount',
-       total: 0,
-       price: 10,
-       learned: false,
-       learnPrice: 40,
-       tab: 'two-tab',
-   },
+  woodenStaff = lstore.getItem("woodenStaff") ? JSON.parse(lstore.getItem("woodenStaff")) : {
+    id: 'woodenStaffCount',
+    total: 0,
+    price: 12,
+    learned: false,
+    learnPrice: 50,
+    tab: 'two-tab',
+  },
 
-//Upgrades available
-   upgrades = lstore.getItem("upgrades") ? JSON.parse(lstore.getItem("upgrades")):{
-       total: 1,
+   woodenSword = lstore.getItem("woodenSword") ? JSON.parse(lstore.getItem("woodenSword")) : {
+     id: 'woodenSwordCount',
+     total: 0,
+     price: 17,
+     learned: false,
+     learnPrice: 200,
+     tab: 'three-tab',
    },
 
-//Hires available
-   hires = lstore.getItem("hires") ? JSON.parse(lstore.getItem("hires")):{
-       total: 2,
-   },
-//Jobs
-    lumberjack = lstore.getItem("lumberjack") ? JSON.parse(lstore.getItem("lumberjack")):{
-        id: "lumberjackCount",
-        total: 0,
-        hirePrice: 50,
-        hired: false,
-        increment: 0,
-    },
-    fiberCollector =  lstore.getItem("fiberCollector") ? JSON.parse(lstore.getItem("fiberCollector")):{
-      id: "fiberCollectorCount",
-      total: 0,
-      hirePrice: 50,
-      hired: false,
-      increment: 0,
-    }
-
-  
- 
-  //Unlockables
-  document.getElementById('two-tab').style.display = woodenStaff.learned ? 'inline' : 'none';  
-  
-  document.getElementById('woodenStaffCount').style.display = woodenStaff.learned ? 'none' : 'visible';  
-
-  document.getElementById('fiberCollectorCount').style.display = fiberCollector.hired ? 'none' : 'inline-block';
-  document.getElementById('lumberjackCount').style.display = fiberCollector.hired ? 'none' : 'inline-block';
-
- 
-   //Round numbers to N decimals
- function roundN(num,n){
-    return parseFloat(Math.round(num * Math.pow(10, n)) /Math.pow(10,n)).toFixed(n);
+  //Jobs
+  lumberjack = lstore.getItem("lumberjack") ? JSON.parse(lstore.getItem("lumberjack")) : {
+    id: "lumberjackCount",
+    upgradeId: "isLumberUpgraded",
+    total: 0,
+    hirePrice: 10,
+    hired: false,
+    increment: 0,
+  },
+  fiberCollector = lstore.getItem("fiberCollector") ? JSON.parse(lstore.getItem("fiberCollector")) : {
+    id: "fiberCollectorCount",
+    upgradeId: "isFiberUpgraded",
+    total: 0,
+    hirePrice: 15,
+    hired: false,
+    increment: 0,
   }
 
- 
-  function updateResourceTotals() {
+
+
+//Unlockables
+document.getElementById('two-tab').style.display = woodenStaff.learned ? 'inline' : 'none';
+
+
+
+//Round numbers to N decimals
+function roundN(num, n) {
+  return parseFloat(Math.round(num * Math.pow(10, n)) / Math.pow(10, n)).toFixed(n);
+}
+
+
+
+
+function updateResourceTotals() {
   //Update page with resource numbers
 
   //wood
-  document.getElementById('wood').innerHTML = roundN(wood.total, 2);
-  document.getElementById('woodSpeed').innerHTML = lumberjack.increment; 
-  updateSave(wood,"wood");
+  document.getElementById('wood').innerHTML = roundN(wood.total, 0);
+  document.getElementById('woodSpeed').innerHTML = roundN(lumberjack.increment, 2);
+  updateSave(wood, "wood");
 
   //fibers
-  document.getElementById('fibers').innerHTML = roundN(fiber.total, 2);
-  document.getElementById('fibersSpeed').innerHTML = fiberCollector.increment; 
-  updateSave(fiber,"fiber");
+  document.getElementById('fibers').innerHTML = fiber.total;
+  document.getElementById('fibersSpeed').innerHTML = roundN(fiberCollector.increment, 2);
+  updateSave(fiber, "fiber");
 
   //money
   document.getElementById('money').innerHTML = roundN(money.total, 2);
-  updateSave(money,"money");
-  
-  //upgrades
-  document.getElementById('upgradesNb').innerHTML = upgrades.total;
-  updateSave(upgrades,"upgrades")
-
-  //hires
-  document.getElementById('hiresNb').innerHTML = hires.total;
-  updateSave(hires,"hires")
+  updateSave(money, "money");
 
 
-   }
+  //Research
+  document.getElementById('research').innerHTML = roundN(research.total, 0);
+  updateSave(research, "research");
+
+
+}
 
 function updateItemTotals() {
-	//Update page with items numbers
+  //Update page with items numbers
+  //wooden key
   document.getElementById('woodenKey').innerHTML = woodenKey.total;
-  updateSave(woodenKey,"woodenKey")
+  updateSave(woodenKey, "woodenKey");
 
+  //wooden Staff
   document.getElementById('woodenStaff').innerHTML = woodenStaff.total;
-  updateSave(woodenStaff, "woodenStaff")
+  updateSave(woodenStaff, "woodenStaff");
 
+  //Money
   document.getElementById('money').innerHTML = roundN(money.total, 2);
-  updateSave(money, "money")
+  updateSave(money, "money");
+
+  //wooden Sword
+  //document.getElementById('woodenSword').innerHTML = woodenSword.total;
+  //updateSave(woodenSword, "woodenSword");
 
 
-   }
+}
+
+function updateJobsTotals() {
+  //Update page with job numbers and prices
+  //Lumberjack
+  document.getElementById('lumberjackPrice').innerHTML = roundN(lumberjack.hirePrice, 0);
+  
+  //Fiber Collector
+  document.getElementById('fiberPrice').innerHTML = roundN(fiberCollector.hirePrice, 0);
+  
+}
 
 
 // Ressources clicker
-  function add(material) {
-        material.total = material.total + material.increment;
-        updateResourceTotals();
+function add(material, progressBar) {
+  currentLength = document.getElementById(progressBar).value;
+  currentLength += material.increment;
+  document.getElementById(progressBar).value = currentLength;
+
+
+
+  if (currentLength >= 0.90) {
+    currentLength = 0;
+    material.total = material.total + 1;
+    document.getElementById(progressBar).value = currentLength;
+
   }
+
+  updateResourceTotals();
+}
 
 // Item crafter for single materiel items only
-  function craftOne(material, itemName, count) {
-            if (material.total >= count) {
-            material.total -= count;
-            itemName.total += 1;
-            updateItemTotals();
-            updateResourceTotals();
-        }   
-  }
-
-  // Item crafter for double materiel items only
-  function craftTwo(material1, count1, material2, count2, itemName) {
-            if (material1.total >= count1 && material2.total >= count2) {
-            material1.total -= count1;
-            material2.total -= count2;
-            itemName.total += 1;
-            updateItemTotals();
-            updateResourceTotals();
-        }   
-  }
-  
- //Item seller
-  function sellAll(item) {
-    if (item.total >= 1) {
-      money.total += (item.total * item.price);
-      item.total = 0;
-      updateItemTotals();
-    }
-  }
-        
-  
-  //Upgrades : Learn a craft
-  function learn(item) {
-      
-        if(money.total >= item.learnPrice) {
-        item.learned = true;
-        document.getElementById(item.tab).style.display = 'inline';
-        upgrades.total -= 1;
-        money.total -= item.learnPrice;
-        document.getElementById(item.id).style.display = 'none';
-        if("woodenStaffCount" === item.id){
-          updateSave(item,"woodenStaff")
-        }
-        updateResourceTotals();
-       }
-      }
-  
-      //Hire
-  function hire(job) {
-       if(money.total >= job.hirePrice) {
-        job.hired = true; 
-        job.increment += 0.25;
-        hires.total -= 1;
-        money.total -= job.hirePrice;
-        document.getElementById(job.id).style.display = 'none';
-        updateResourceTotals();
-        if(job.id==="lumberjackCount"){
-          updateSave(job,"lumberjack")
-        }
-        else{
-          updateSave(job,"fiberCollector")
-        }
-       }
+function craftOne(material, itemName, count, progressBar) {
+  currentLength = document.getElementById(progressBar).value;
+  if (material.total >= count) {
+    currentLength += 0.25;
+    document.getElementById(progressBar).value = currentLength;
+    if (currentLength >= 0.90) {
+      currentLength = 0;
+      material.total -= count;
+      itemName.total += 1;
+      document.getElementById(progressBar).value = currentLength;
     }
 
-
-
-
-
-    //Auto-collect
-    function autoIncrement(resource, job) {
-      resource.total += job.increment;
-      updateResourceTotals();
-    }
-    
-    //Saving to local storage
-
-    function updateSave(fieldObj,objNameStr){
-      window.localStorage.setItem(objNameStr,JSON.stringify(fieldObj))
-    }
-
-    function clearSave(){
-      window.localStorage.clear();
-      document.location.reload(true);
-    }
-
-    //intial runs for the purpose of saves
     updateItemTotals();
     updateResourceTotals();
+  }
+}
 
-    setInterval(function(){ 
+// Item crafter for double materiel items only
+function craftTwo(material1, count1, material2, count2, itemName, progressBar) {
+  currentLength = document.getElementById(progressBar).value;
+  if (material1.total >= count1 && material2.total >= count2) {
+    currentLength += 0.25;
+    document.getElementById(progressBar).value = currentLength;
+    if (currentLength >= 0.90) {
+    material1.total -= count1;
+    material2.total -= count2;
+    itemName.total += 1;
+    document.getElementById(progressBar).value = currentLength;
+    }
+    updateItemTotals();
+    updateResourceTotals();
+  }
+}
+
+//Item seller
+function sell(item, progressBar) {
+  currentLength = document.getElementById(progressBar).value;
+  if (item.total >= 1) {
+    currentLength += 0.2;
+    document.getElementById(progressBar).value = currentLength;
+    if (currentLength >= 0.90) {
+      currentLength = 0;
+      item.total -= 1;
+      money.total += item.price;
+      document.getElementById(progressBar).value = currentLength;
+    }
+
+    updateItemTotals();
+    updateResourceTotals();
+  }
+}
+
+
+//Research : Learn a craft
+function learn(item) {
+    if (research.total >= item.learnPrice) {
+    item.learned = true;
+    research.total -= item.learnPrice;
+    if (item.learned === true) {
+      document.getElementById(item.tab).style.display = 'inline';
+      document.getElementById(item.id).style.display = 'none';
+    }
+    if ("woodenStaffCount" === item.id) {
+      updateSave(item, "woodenStaff");
+    }
+    updateResourceTotals();
+  }
+}
+
+//Hire
+function hire(job, baseIncrement) {
+  if (money.total >= job.hirePrice) {
+    job.hired = true;
+    job.total += 1;
+    job.increment = (baseIncrement * job.total);
+    money.total -= job.hirePrice;
+    job.hirePrice = (job.hirePrice * 1.45)
+    updateResourceTotals();
+    updateJobsTotals()
+    checkUpgrade(job);
+    if (job.id === "lumberjackCount") {
+      updateSave(job, "lumberjack")
+    } 
+    if (job.id === "fiberCollectorCount") {
+      updateSave(job, "fiberCollector")
+    }
       
-      autoIncrement(wood, lumberjack);
-      autoIncrement(fiber, fiberCollector);
-    
-    }, 1000);
+    }
+  }
+
+
+
+
+
+
+//Auto-collect
+function autoIncrement(material, job, progressBar) {
+  currentLength = document.getElementById(progressBar).value;
+  currentLength += job.increment;
+  document.getElementById(progressBar).value = currentLength;
+
+
+
+  if (currentLength >= 0.90) {
+    currentLength = 0;
+    material.total = material.total + 1;
+    document.getElementById(progressBar).value = currentLength;
+    updateResourceTotals();
+
+  }
+
+}
+
+
+//Saving to local storage
+
+function updateSave(fieldObj, objNameStr) {
+  window.localStorage.setItem(objNameStr, JSON.stringify(fieldObj))
+}
+
+function clearSave() {
+  window.localStorage.clear();
+  document.location.reload(true);
+}
+
+//Init game data for saves
+updateItemTotals();
+updateResourceTotals();
+updateJobsTotals();
+
+//Check if jobs are can have "upgrade" status
+function checkUpgrade(job) {
+  if (job.hired === true) {
+    document.getElementById(job.upgradeId).innerHTML = "Upgrade";
+  }
+}
+
+//Check if an item is learned.
+function checkLearnedItem(item) {
+  if (item.learned === true) {
+    document.getElementById(item.tab).style.display = 'inline';
+    document.getElementById(item.id).style.display = 'none';
+  }
+}
+
+//Init job upgrade status
+checkUpgrade(lumberjack);
+checkUpgrade(fiberCollector);
+
+//Init item learned status
+checkLearnedItem(woodenStaff);
+
+setInterval(function () {
+
+  autoIncrement(wood, lumberjack, 'progressWood');
+  autoIncrement(fiber, fiberCollector, 'progressFiber');
+
+}, 1000);
