@@ -64,7 +64,7 @@ var wood = lstore.getItem("wood") ? JSON.parse(lstore.getItem("wood")) : {
    woodenShield = lstore.getItem("woodenShield") ? JSON.parse(lstore.getItem("woodenShield")) : {
     id: 'woodenShieldCount',
     total: 0,
-    price: 40,
+    price: 68,
     learned: false,
     learnPrice: 600,
     tab: 'five-tab',
