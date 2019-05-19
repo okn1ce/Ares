@@ -39,7 +39,7 @@ var wood = lstore.getItem("wood") ? JSON.parse(lstore.getItem("wood")) : {
   woodenStaff = lstore.getItem("woodenStaff") ? JSON.parse(lstore.getItem("woodenStaff")) : {
     id: 'woodenStaffCount',
     total: 0,
-    price: 12,
+    price: 8,
     learned: false,
     learnPrice: 50,
     tab: 'two-tab',
@@ -48,7 +48,7 @@ var wood = lstore.getItem("wood") ? JSON.parse(lstore.getItem("wood")) : {
    woodenSword = lstore.getItem("woodenSword") ? JSON.parse(lstore.getItem("woodenSword")) : {
      id: 'woodenSwordCount',
      total: 0,
-     price: 17,
+     price: 20,
      learned: false,
      learnPrice: 200,
      tab: 'three-tab',
@@ -56,7 +56,7 @@ var wood = lstore.getItem("wood") ? JSON.parse(lstore.getItem("wood")) : {
    woodenBow = lstore.getItem("woodenBow") ? JSON.parse(lstore.getItem("woodenBow")) : {
      id: 'woodenBowCount',
      total: 0,
-     price: 22,
+     price: 32,
      learned: false,
      learnPrice: 400,
      tab: 'four-tab',
@@ -64,7 +64,7 @@ var wood = lstore.getItem("wood") ? JSON.parse(lstore.getItem("wood")) : {
    woodenShield = lstore.getItem("woodenShield") ? JSON.parse(lstore.getItem("woodenShield")) : {
     id: 'woodenShieldCount',
     total: 0,
-    price: 27,
+    price: 40,
     learned: false,
     learnPrice: 600,
     tab: 'five-tab',
