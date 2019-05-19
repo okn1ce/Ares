@@ -110,9 +110,9 @@ var wood = lstore.getItem("wood") ? JSON.parse(lstore.getItem("wood")) : {
 
 //Unlockables, each tab = an item
 document.getElementById('two-tab').style.display = woodenStaff.learned ? 'inline' : 'none';
-document.getElementById('three-tab').style.display = woodenStaff.learned ? 'inline' : 'none';
-document.getElementById('four-tab').style.display = woodenStaff.learned ? 'inline' : 'none';
-document.getElementById('five-tab').style.display = woodenStaff.learned ? 'inline' : 'none';
+document.getElementById('three-tab').style.display = woodenSword.learned ? 'inline' : 'none';
+document.getElementById('four-tab').style.display = woodenBow.learned ? 'inline' : 'none';
+document.getElementById('five-tab').style.display = woodenShield.learned ? 'inline' : 'none';
 
 
 
@@ -302,7 +302,14 @@ function learn(item) {
     if ("woodenSwordCount" === item.id) {
       updateSave(item, "woodenSword");
     }
+    if ("woodenBowCount" === item.id) {
+      updateSave(item, "woodenBow");
+    }
+    if ("woodenShieldCount" === item.id) {
+      updateSave(item, "woodenShield");
+    }
     updateResourceTotals();
+    updateItemTotals();
   }
 }
 
