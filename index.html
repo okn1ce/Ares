@@ -95,14 +95,16 @@
           </p>
         </div>
         <div role="tabpanel" class="tab-pane" id="upgrades">
-          <button onClick="hire(lumberjack, 0.10)" type="button" class="btn btn-outline-primary learn"
+          <button onClick="hire(lumberjack, 1)" type="button" class="btn btn-outline-primary learn"
             id="lumberjackCount"><span id="isLumberUpgraded">Hire</span> lumberjack<br>(<span id="lumberjackPrice">10</span>)</button>
-          <button onClick="hire(fiberCollector, 0.20)" type="button" class="btn btn-outline-primary learn"
+          <button onClick="hire(fiberCollector, 1)" type="button" class="btn btn-outline-primary learn"
             id="fiberCollectorCount"><span id="isFiberUpgraded">Hire</span> nail producer<br>(<span id="fiberPrice">15</span>)</button>
             <button onClick="hire(mage, 0.25)" type="button" class="btn btn-outline-primary learn"
             id="mageCount"><span id="isMageUpgraded">Hire</span> mage<br>(<span id="magePrice">100</span>)</button>
             <button onClick="Buysalesmen()" type="button" class="btn btn-outline-primary learn"
             id="salesCount"><span id="isSalesUpgraded">Hire</span> salesmen<br>(<span id="salesPrice">80</span>)</button>
+            <button onClick="Buyblacksmith()" type="button" class="btn btn-outline-primary learn"
+            id="blacksmithCount"><span id="isBlacksmithUpgraded">Hire</span> blacksmith<br>(<span id="blacksmithPrice">80</span>)</button>
 
         </div>
         <div role="tabpanel" class="tab-pane text-white" id="researchPanel">
@@ -153,7 +155,7 @@
                   <progress class="Craft" id="sellWoodenKey" value="0" max="1"></progress>   
                   <br>      
                  </div>
-              </div>	 
+              </div>   
               
               <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12" id="two-tab">
                      
@@ -165,7 +167,7 @@
                       <img class="imgBox" src="sprites\items\staff_01a.png" />
                       <h3 class="cardTitle">Wooden Staff</h3>
                       <p class="Tier"><em><strong><span id="woodenStaff">0</span> Staffs.</strong></em></p>
-                      10<img src="sprites\items\coin_01d.png" width="25" height="20"/>
+                      12<img src="sprites\items\coin_01d.png" width="25" height="20"/>
                       <p class="craftRequirements">(2<img src="sprites\items\tile001.png" width="25" height="20"/>)</p>
                     </div>
                                 
@@ -180,7 +182,7 @@
                     <progress class="Craft" id="sellWoodenStaff" value="0" max="1"></progress>   
                     <br>   
                    </div>
-                </div>	 
+                </div>   
                 
                 <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12" id="three-tab">
                      
@@ -192,7 +194,7 @@
                         <img class="imgBox" src="sprites\items\sword_02a.png" />
                         <h3 class="cardTitle">Wooden Sword</h3>
                         <p class="Tier"><em><strong><span id="woodenSword">0</span> Swords.</strong></em></p>
-                        20<img src="sprites\items\coin_01d.png" width="25" height="20"/>
+                        17<img src="sprites\items\coin_01d.png" width="25" height="20"/>
                         <p class="craftRequirements">(3<img src="sprites\items\tile001.png" width="25" height="20"/>) (5<img src="sprites/items/tile000.png" width="25" height="20"/>)</p>
                       </div>
                                   
@@ -215,10 +217,10 @@
                                     <i class="fa fa-behance fa-3x" aria-hidden="true"></i>
                                     
                         <div class="title">
-                          <img class="imgBox" src="sprites\items\woodenBow2.png" />
+                          <img class="imgBox" src="sprites\items\WoodenBow2.png" />
                           <h3 class="cardTitle">Wooden Bow</h3>
                           <p class="Tier"><em><strong><span id="woodenBow">0</span> Bows.</strong></em></p>
-                          32<img src="sprites\items\coin_01d.png" width="25" height="20"/>
+                          22<img src="sprites\items\coin_01d.png" width="25" height="20"/>
                           <p class="craftRequirements"> (4<img src="sprites\items\tile001.png" width="25" height="20"/>)</p>
                         </div>
                                     
@@ -244,14 +246,14 @@
                             <img class="imgBox" src="sprites\items\shield_01a.png"/>
                             <h3 class="cardTitle">Wooden Shield</h3>
                             <p class="Tier"><em><strong><span id="woodenShield">0</span> Shields.</strong></em></p>
-                            68<img src="sprites\items\coin_01d.png" width="25" height="20"/>
-                            <p class="craftRequirements">(5<img src="sprites\items\tile001.png" width="25" height="20"/>) (14<img src="sprites/items/tile000.png" width="25" height="20"/>)</p>
+                            27<img src="sprites\items\coin_01d.png" width="25" height="20"/>
+                            <p class="craftRequirements">(5<img src="sprites\items\tile001.png" width="25" height="20"/>) (8<img src="sprites/items/tile000.png" width="25" height="20"/>)</p>
                           </div>
                                       
                           
                                       
                           <div class="ui-group-buttons">
-                              <button type="button" class="btn btn-warning" onClick="craftTwo(wood, 5, fiber, 14, woodenShield, 'craftWoodenShield')">C</button>
+                              <button type="button" class="btn btn-warning" onClick="craftTwo(wood, 5, fiber, 8, woodenShield, 'craftWoodenShield')">C</button>
                               <div class="or"></div>
                               <button type="button" class="button btn btn-success" onClick="sell(woodenShield, 'sellWoodenShield')">S</button>
                           </div>    
@@ -259,13 +261,8 @@
                           <progress class="Craft" id="sellWoodenShield" value="0" max="1"></progress>   
                           <br>   
                          </div>
-                      </div>	 	 
+                      </div>     
     </div>
-  </div>
-</div>
-</div>
-</div>
-
 
 
 
@@ -287,7 +284,7 @@
 
 </body>
 <footer class="fixed-bottom text-center">ARES | Game made with ❤️ and ☕ by Get2Hyped
-    (v0.2e)</footer>
+    (v0.2f)</footer>
 
 </html>
 

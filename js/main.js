@@ -39,7 +39,7 @@ var wood = lstore.getItem("wood") ? JSON.parse(lstore.getItem("wood")) : {
   woodenStaff = lstore.getItem("woodenStaff") ? JSON.parse(lstore.getItem("woodenStaff")) : {
     id: 'woodenStaffCount',
     total: 0,
-    price: 10,
+    price: 12,
     learned: false,
     learnPrice: 50,
     tab: 'two-tab',
@@ -48,7 +48,7 @@ var wood = lstore.getItem("wood") ? JSON.parse(lstore.getItem("wood")) : {
    woodenSword = lstore.getItem("woodenSword") ? JSON.parse(lstore.getItem("woodenSword")) : {
      id: 'woodenSwordCount',
      total: 0,
-     price: 20,
+     price: 17,
      learned: false,
      learnPrice: 200,
      tab: 'three-tab',
@@ -56,7 +56,7 @@ var wood = lstore.getItem("wood") ? JSON.parse(lstore.getItem("wood")) : {
    woodenBow = lstore.getItem("woodenBow") ? JSON.parse(lstore.getItem("woodenBow")) : {
      id: 'woodenBowCount',
      total: 0,
-     price: 32,
+     price: 22,
      learned: false,
      learnPrice: 400,
      tab: 'four-tab',
@@ -64,7 +64,7 @@ var wood = lstore.getItem("wood") ? JSON.parse(lstore.getItem("wood")) : {
    woodenShield = lstore.getItem("woodenShield") ? JSON.parse(lstore.getItem("woodenShield")) : {
     id: 'woodenShieldCount',
     total: 0,
-    price: 68,
+    price: 27,
     learned: false,
     learnPrice: 600,
     tab: 'five-tab',
@@ -103,6 +103,14 @@ var wood = lstore.getItem("wood") ? JSON.parse(lstore.getItem("wood")) : {
     hirePrice: 80,
     hired: false,
     increment: 0.20,
+  },
+  blacksmith = lstore.getItem("blacksmith") ? JSON.parse(lstore.getItem("blacksmith")) : {
+    id: "blacksmithCount",
+    upgradeId: "isBlacksmithUpgraded",
+    total: 0,
+    hirePrice: 80,
+    hired: false,
+    increment: 0.20,
   }
 
 
@@ -110,9 +118,9 @@ var wood = lstore.getItem("wood") ? JSON.parse(lstore.getItem("wood")) : {
 
 //Unlockables, each tab = an item
 document.getElementById('two-tab').style.display = woodenStaff.learned ? 'inline' : 'none';
-document.getElementById('three-tab').style.display = woodenSword.learned ? 'inline' : 'none';
-document.getElementById('four-tab').style.display = woodenBow.learned ? 'inline' : 'none';
-document.getElementById('five-tab').style.display = woodenShield.learned ? 'inline' : 'none';
+document.getElementById('three-tab').style.display = woodenStaff.learned ? 'inline' : 'none';
+document.getElementById('four-tab').style.display = woodenStaff.learned ? 'inline' : 'none';
+document.getElementById('five-tab').style.display = woodenStaff.learned ? 'inline' : 'none';
 
 
 
@@ -192,6 +200,9 @@ function updateJobsTotals() {
 
   //Salesmen
   document.getElementById('salesPrice').innerHTML = roundN(salesmen.hirePrice, 0);
+  
+  //Blacksmith
+  document.getElementById('blacksmithPrice').innerHTML = roundN(blacksmith.hirePrice, 0);
 }
 
 
@@ -286,6 +297,42 @@ function sellAuto(item, progressBar) {
   }
 }
 
+//Item auto-craft for 1 material items function
+function craftAuto(material, itemName, count, progressBar) {
+  currentLength = document.getElementById(progressBar).value;
+  if (material.total >= count) {
+    currentLength += blacksmith.increment;
+    document.getElementById(progressBar).value = currentLength;
+    if (currentLength >= 0.90) {
+      currentLength = 0;
+      material.total -= count;
+      itemName.total += 1;
+      document.getElementById(progressBar).value = currentLength;
+    }
+
+    updateItemTotals();
+    updateResourceTotals();
+  }
+}
+
+//Item auto-craft for 2 material items function
+function craftTwoAuto(material1, count1, material2, count2, itemName, progressBar) {
+currentLength = document.getElementById(progressBar).value;
+  if (material1.total >= count1 && material2.total >= count2) {
+    currentLength += blacksmith.increment;
+    document.getElementById(progressBar).value = currentLength;
+    if (currentLength >= 0.90) {
+    material1.total -= count1;
+    currentLength = 0;
+    material2.total -= count2;
+    itemName.total += 1;
+    document.getElementById(progressBar).value = currentLength;
+    }
+    updateItemTotals();
+    updateResourceTotals();
+  }
+}
+
 
 //Research : Learn a craft
 function learn(item) {
@@ -302,14 +349,7 @@ function learn(item) {
     if ("woodenSwordCount" === item.id) {
       updateSave(item, "woodenSword");
     }
-    if ("woodenBowCount" === item.id) {
-      updateSave(item, "woodenBow");
-    }
-    if ("woodenShieldCount" === item.id) {
-      updateSave(item, "woodenShield");
-    }
     updateResourceTotals();
-    updateItemTotals();
   }
 }
 
@@ -320,7 +360,7 @@ function hire(job, baseIncrement) {
     job.total += 1;
     job.increment = (baseIncrement * job.total);
     money.total -= job.hirePrice;
-    job.hirePrice = (job.hirePrice * 1.20)
+    job.hirePrice = (job.hirePrice * 1.10)
     updateResourceTotals();
     updateJobsTotals()
     checkUpgrade(job);
@@ -345,8 +385,23 @@ function Buysalesmen() {
     salesmen.total += 1;
     salesmen.increment = (0.20 * salesmen.total);
     money.total -= salesmen.hirePrice;
-    salesmen.hirePrice = (salesmen.hirePrice * 1.15);
+    salesmen.hirePrice = (salesmen.hirePrice * 1.30);
     updateSave(salesmen, "Salesmen");
+  }
+  updateJobsTotals();
+  updateItemTotals();
+  updateResourceTotals();
+}
+
+//Blacksmith function
+function Buyblacksmith() {
+  if (money.total >= blacksmith.hirePrice) {
+    blacksmith.hired = true;
+    blacksmith.total += 1;
+    blacksmith.increment = (0.20 * blacksmith.total);
+    money.total -= blacksmith.hirePrice;
+    blacksmith.hirePrice = (blacksmith.hirePrice * 1.30);
+    updateSave(blacksmith, "Blacksmith");
   }
   updateJobsTotals();
   updateItemTotals();
@@ -355,23 +410,10 @@ function Buysalesmen() {
 
 
 
-
 //Auto-collect
 function autoIncrement(material, job, progressBar) {
-  currentLength = document.getElementById(progressBar).value;
-  currentLength += job.increment;
-  document.getElementById(progressBar).value = currentLength;
-
-
-
-  if (currentLength >= 0.90) {
-    currentLength = 0;
-    material.total = material.total + 1;
-    document.getElementById(progressBar).value = currentLength;
-    updateResourceTotals();
-
-  }
-
+  material.total = material.total + job.increment;
+  updateResourceTotals();
 }
 
 //Auto-sell
@@ -389,7 +431,7 @@ function initautosell() {
     if(woodenBow.total >= 1) {
       sellAuto(woodenBow, 'sellWoodenBow');
     }
-    if(woodenShield >= 1) {
+    if(woodenShield.total >= 1) {
       sellAuto(woodenShield, 'sellWoodenShield');
     }
     document.getElementById('isSalesUpgraded').innerHTML = "Upgrade";
@@ -397,6 +439,33 @@ function initautosell() {
     updateSave(salesmen, "salesmen");
   }
 }
+
+//Auto-craft
+function initautocraft() {
+  if(blacksmith.hired === true) {
+    
+    if(woodenShield.learned === true) {
+      craftTwoAuto(wood, 5, fiber, 8, woodenShield, 'craftWoodenShield');
+    }
+    if(woodenBow.learned === true) {
+      craftAuto(wood, woodenBow, 4, 'craftWoodenBow');
+    }
+    if(woodenSword.learned === true) {
+      craftTwoAuto(wood, 3, fiber, 5, woodenSword, 'craftWoodenSword');
+    }
+    if(woodenStaff.learned === true) {
+      craftAuto(wood, woodenStaff, 2, 'craftWoodenStaff');
+    }
+    if(wood.total >= 1) {
+      craftAuto(wood, woodenKey, 1, 'craftWoodenKey');
+    }
+    
+    document.getElementById('isBlacksmithUpgraded').innerHTML = "Upgrade";
+    blacksmith.hired = true;
+    updateSave(blacksmith, "blacksmith");
+  }
+}
+
 
 
 
@@ -448,7 +517,13 @@ setInterval(function () {
   autoIncrement(fiber, fiberCollector, 'progressFiber');
   autoIncrement(research, mage, 'progressResearch');
   initautosell();
+  initautocraft()
   
 
 }, 1000);
 
+setInterval(function () {
+  updateItemTotals();
+ updateResourceTotals();
+ updateJobsTotals();
+}, 10);
